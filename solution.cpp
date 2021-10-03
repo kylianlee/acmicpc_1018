@@ -9,6 +9,19 @@ using namespace std;
 
 vector<vector<int>> board;
 
+int checkBoard(bool flag, int x, int y){
+  int sum = 0;
+  for (int i = x; i < 8 + x; ++i) {
+    for (int j = y; j < 8 + y; ++j) {
+      if(board[i][j] != flag)
+        sum++;
+      flag = !flag;
+    }
+    flag = !flag;
+  }
+  return sum;
+}
+
 int main(){
   int r, c;
   cin >> r >> c;
@@ -30,17 +43,12 @@ int main(){
   for (int i = 0; i <= r - 8; ++i) {
     for(int j = 0; j <= c - 8; ++j) {
       bool flag = board[i][j];
-      int sum = 0;
-      for (int k = i; k < 8 + i; ++k) {
-        for (int l = j; l < 8 + j; ++l) {
-          if(board[k][l] != flag)
-            sum++;
-          flag = !flag;
-        }
-        flag = !flag;
-      }
-      if(min > sum)
-        min = sum;
+      int ret1 = checkBoard(flag, i, j);
+      int ret2 = checkBoard(!flag, i, j);
+      if(ret1 > ret2 && ret2 < min)
+        min = ret2;
+      else if(ret2 > ret1 && ret1 < min)
+        min = ret1;
     }
   }
   cout << min;
@@ -79,3 +87,47 @@ int main(){
 //BWBWBWBW
 //WBWBWBWB
 //BWBWBWBW
+
+//10 13
+//WWWWWWWWBWBWB
+//WWWWWWWWWBWBW
+//WWWWWWWWBWBWB
+//WWWWWWWWWBWBW
+//WWWWWWWWBWBWB
+//WWWWWWWWWBWBW
+//WWWWWWWWBWBWB
+//WWWWWWWWWBWBW
+//BBBBBBBBBBWBW
+//BBBBBBBBBBWBW
+
+//18 8
+//WBWBWBWB
+//BWBBWWBW
+//WBWBWBWB
+//BWBWBWBW
+//WBWBWBWB
+//BWBWBWBW
+//WBWBWBWB
+//BWBWBWBW
+//WBWWBBWB
+//BWBWBWBW
+//WBWBWBWB
+//BWBWBWBW
+//WBWBWBWB
+//BWBWBWBW
+//WBWWWBWB
+//BWBWBWBW
+//WBWBWBWB
+//BWBWBWBW
+
+//10 8
+//WBWWBBBW
+//BWBBWWWW
+//BWWWBBBW
+//BWWWWWWW
+//BWBBWBWB
+//BWWBBBWW
+//WBWBWBBW
+//BWBWBWWW
+//WBWWBBWW
+//WBWWWBBW
