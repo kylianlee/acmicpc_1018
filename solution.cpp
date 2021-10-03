@@ -49,6 +49,8 @@ int main(){
         min = ret2;
       else if(ret2 > ret1 && ret1 < min)
         min = ret1;
+      else if(ret1 == ret2 && ret1 < min)
+        min = ret1;
     }
   }
   cout << min;
@@ -131,3 +133,14 @@ int main(){
 //BWBWBWWW
 //WBWWBBWW
 //WBWWWBBW
+
+//9 8
+//WWWWWWWW
+//WWWWWWWW
+//WWWWWWWW
+//WWWWWWWW
+//WWWWWWWW
+//WWWWWWWW
+//WWWWWWWW
+//WWWWWWWW
+//WWWWWWWW
